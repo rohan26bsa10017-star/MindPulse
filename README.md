@@ -44,6 +44,7 @@ vityarthi 2/
 ├── run.bat               # Windows double-click shortcut to start the app
 ├── run_tests.bat         # Windows shortcut to run unit tests
 ├── data/                 # Folder where mindpulse.db and exported CSVs are kept
+├── screenshots/          # Terminal execution captures and diagrams
 ├── src/                  # Modular source code
 │   ├── analytics/        # Sentiment analysis and Pearson correlation math
 │   ├── assessments/      # PSS-10, PHQ-9, GAD-7 tests and coping advice
@@ -99,38 +100,16 @@ Ran 24 tests in 0.48s
 OK
 ```
 
-## Sample Terminal Outputs
+## Terminal Screenshots & Sample Outputs
 
-### Main Menu
-```
-=======================================================
-  MindPulse Dashboard  |  Logged in as: student1
-=======================================================
-1. Log Daily Mood & Habits (Sleep, Study, Exercise)
-2. View Mood & Lifestyle Analytics (Sparkline & Correlation)
-3. Write Reflective Journal Entry (Sentiment Analysis)
-4. View Reflective Journal History
-5. Take Psychological Assessment (PSS-10, PHQ-9, GAD-7)
-6. View Burnout Risk Index (BRI)
-7. Relaxation & Coping Exercises (Box Breathing)
-8. Crisis Support & Student Helplines
-9. Export Data to CSV
-10. Logout
-0. Exit
-```
+### 1. Interactive Dashboard
+![MindPulse Dashboard](screenshots/screenshot_dashboard.png)
 
-### Mood & Correlation View
-```
-----------------------------------------------------------------------
-DATE         | MOOD   | LABEL        | SLEEP  | STUDY  | EXERCISE
-----------------------------------------------------------------------
-2026-09-22   | 5/10   | Stressed     | 5.0 h  | 7.5 h  | 10 m
-2026-09-23   | 4/10   | Overwhelmed  | 4.5 h  | 8.0 h  | 0 m
-2026-09-24   | 6/10   | Tired        | 6.0 h  | 6.0 h  | 15 m
-2026-09-25   | 7/10   | Productive   | 7.0 h  | 5.0 h  | 30 m
-2026-09-26   | 8/10   | Relaxed      | 7.5 h  | 4.0 h  | 40 m
-2026-09-27   | 8/10   | Good         | 8.0 h  | 3.5 h  | 45 m
-----------------------------------------------------------------------
-Trend Sparkline: ._~=*^
-Correlations: Sleep vs Mood: +0.96, Study vs Mood: -0.98
-```
+### 2. Lifestyle Analytics & Habit Correlations
+![Lifestyle Analytics](screenshots/screenshot_analytics.png)
+
+### 3. Reflective Journaling & Sentiment Engine
+![Journal Sentiment](screenshots/screenshot_journal.png)
+
+### 4. Automated Test Verification (24 / 24 Passing)
+![Unit Tests](screenshots/screenshot_tests.png)
