@@ -7,17 +7,20 @@ As students in college, we often deal with bad sleep schedules, long study hours
 
 I made MindPulse as an offline-first Python project for the VITyarthi flipped course evaluation. It runs directly in the command prompt or terminal and stores everything locally on your own computer in an SQLite database. It lets students record daily mood and habits, write private journal reflections, take standard psychology screening tests (like PSS-10 for stress), and see correlations between their study hours, sleep, and overall mood.
 
-## What It Does (Features)
-- User Login & Security: Students can create their own account with a password. Passwords are saved safely using PBKDF2 hashing with random salts so passwords are never stored in plain text.
-- Daily Habit Tracking: Log mood on a scale of 1 to 10, note down sleep hours, study hours, exercise minutes, and general energy levels.
-- Reflection Journal with Local Sentiment Analysis: Write personal diary entries. A built-in Python function checks positive and negative keywords, handles words like 'not happy', and gives an emotional valence score (-1.0 to +1.0) along with theme tags.
-- Clinical Screening Scales:
-  - PSS-10 (Perceived Stress Scale): 10 questions with reverse scoring to calculate current stress.
-  - PHQ-9 (Patient Health Questionnaire): 9 standard clinical questions for depression screening.
-  - GAD-7 (Generalized Anxiety Disorder): 7 questions to check anxiety levels.
-- Analytics & Correlation: Calculates Pearson correlation coefficients (r) to show whether more sleep or fewer study hours improves your mood. Also shows a simple 7-day Burnout Risk score.
-- Coping Exercises & Helplines: Built-in step-by-step relaxation guides like Box Breathing and the 5-4-3-2-1 grounding technique, plus helpline numbers (Tele-MANAS, Vandrevala Foundation) for emergencies.
-- Export Data: Export your logged history to a CSV file anytime to keep backups or view in Excel.
+## What It Does
+
+I built MindPulse to cover the everyday things a student actually needs without making it complicated:
+
+1. **Secure Login without Cloud Accounts**: You create your own username and password on your laptop. Passwords use PBKDF2 hashing with random salts, so even if someone opens the sqlite database file, they can't read your password.
+2. **Quick Habit & Mood Check-in**: In under 30 seconds, you can log how you're feeling (1 to 10), sleep hours, study time, exercise, and energy levels. It prevents bogus inputs like negative hours or mood ratings over 10.
+3. **Private Diary with Sentiment Scoring**: You can write whatever is on your mind. A local Python algorithm scans for positive/negative words (handling tricky phrases like "not feeling good" or "barely slept") and scores your mood from -1.0 to +1.0.
+4. **Three Real Psychological Tests**:
+   - PSS-10 for overall perceived stress (with proper reverse scoring on positive questions).
+   - PHQ-9 for depression screening.
+   - GAD-7 for anxiety levels.
+5. **Math Correlations & Burnout Alerts**: Uses the Pearson formula ($r$) to calculate if your sleep hours actually improve your mood, and warns you if your last 7 days show dangerous burnout patterns.
+6. **Breathing Guides & Emergency Helplines**: Has guided terminal exercises (like Box Breathing) to calm down during study stress, and lists verified student helplines (like Tele-MANAS).
+7. **CSV Export**: Lets you dump your logged history into an Excel-friendly CSV file whenever you want to keep a personal backup or view it in Microsoft Excel.
 
 ## Built With (Tools & Libraries)
 - Python 3 (tested on Python 3.10 and 3.13)
@@ -33,7 +36,7 @@ Here is how the project files are arranged:
 ```
 vityarthi 2/
 ├── main.py               # Main entry file to run the project
-├── mindpulse_human.py    # Consolidated single-file version
+├── mindpulse_standalone.py # Consolidated single-file version
 ├── README.md             # Project documentation and guide
 ├── statement.md          # Project problem statement and scope
 ├── Project_Report.pdf    # Full 15-chapter project report
@@ -74,7 +77,7 @@ python main.py
 ```
 Or if you prefer running the single-file version:
 ```bash
-python mindpulse_human.py
+python mindpulse_standalone.py
 ```
 
 ## How to Run Tests

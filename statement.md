@@ -1,45 +1,52 @@
 # Project Statement - MindPulse
 
 ## 1. Problem Statement
-College life comes with a lot of pressure—continuous assignments, lab exams, long study nights, and erratic sleep schedules. Most students struggle with stress and fatigue at some point in the semester, but rarely realize how badly their habits are affecting their mental health until they feel completely burnt out.
+Hostel life at college can get pretty exhausting. Between 8 AM lectures, lab FATs, continuous assignments, and prepping for CAT exams, most of us in the hostel end up staying awake until 3 or 4 in the morning. Next day, we wake up feeling drained, drink coffee, and try to push through another full day of classes. After doing this for a couple of weeks, burnout hits hard. 
 
-While there are many wellness and mood tracking apps on mobile app stores, almost all of them come with major downsides:
-1. They require expensive monthly subscriptions.
-2. They force users to upload deeply personal journals and thoughts to external cloud servers, which raises privacy concerns.
-3. They give generic motivational quotes instead of showing actual links between daily habits and mood.
+The worst part is that we usually don't even realize how badly our chaotic sleep and study habits are messing with our mood until we're completely stressed out and falling behind.
 
-There is a real need for a simple, completely private, and practical tool built specifically for college students. MindPulse solves this by running 100% locally on the student's laptop through Python. It lets students record their daily habits, write private journal reflections, take recognized stress and anxiety screening quizzes, and mathematically see how their sleep and study hours are directly impacting their mood.
+Sure, there are dozens of habit and mood tracking apps on the Play Store. But almost none of them work well for a college student. First off, most of them lock their best features behind a 500-rupee monthly subscription after giving you a tiny 3-day trial. Worse, they make you upload your personal journal entries and private thoughts to their cloud servers. Nobody wants their private stress notes or emotional thoughts stored on some random company's database. On top of that, these apps usually just show a generic motivational quote instead of giving you real numbers or showing if your 4-hour sleep night is the real reason you felt miserable all day.
+
+That is why I built MindPulse. 
+
+I wanted a simple, distraction-free tool written in Python that runs right inside your laptop's terminal. Everything stays 100% on your machine inside a local SQLite database (`mindpulse.db`). You can log your daily hours, write honest reflections without worrying about privacy, take standard stress screening quizzes (like PSS-10), and let the program calculate the exact mathematical correlation between your sleep, study time, and daily mood.
 
 ---
 
 ## 2. Scope of the Project
-The scope of MindPulse covers:
-- Local Storage & Privacy: All accounts, journals, habit logs, and test results are stored exclusively on the user's computer inside a local SQLite database (`mindpulse.db`). No personal data ever leaves the machine.
-- Daily Habit & Mood Tracking: A quick daily log for mood (1 to 10), sleep duration (in hours), study time, exercise time, and general energy level.
-- Private Reflective Journaling: A built-in terminal text entry system where students can write freely about their day. A Python algorithm checks positive and negative word patterns (handling words like "not happy" or "really stressed") to score mood sentiment and extract main keywords.
-- Standard Psychological Self-Assessments:
-  1. PSS-10 (Perceived Stress Scale): Measures how unpredictable or overwhelming life feels right now.
-  2. PHQ-9 (Patient Health Questionnaire): A standard 9-question depression screening questionnaire.
-  3. GAD-7 (Generalized Anxiety Disorder): A 7-question anxiety severity questionnaire.
-- Habit Correlation & Burnout Warnings: Uses the Pearson correlation formula ($r$) to calculate whether more sleep actually correlates with higher mood scores, and checks rolling 7-day averages to flag warning signs of burnout.
-- Grounding & Relaxation Guides: Quick step-by-step calming exercises like 4x4 Box Breathing and the 5-4-3-2-1 sensory grounding exercise, along with helpline contacts for immediate assistance.
-- CSV Data Export: Allows students to export their logged data to a clean CSV spreadsheet whenever they want to keep a personal backup or view it in Microsoft Excel.
+Here is what I designed MindPulse to handle:
+
+First, complete offline privacy. You don't need any internet connection to use this. Your login password gets hashed using PBKDF2 with salt, and all your journal entries and scores stay inside your local database folder. Nothing gets uploaded anywhere.
+
+Second, daily routine logging. When you open the program, you can quickly enter your mood score from 1 to 10, how many hours you slept, how much you studied, exercise minutes, and how energetic you feel. The program checks your inputs so you can't accidentally type negative hours or a mood rating of 15.
+
+Third, a private terminal journal with local sentiment analysis. You can write whatever happened during your day. Instead of calling paid cloud APIs, I wrote a local dictionary-based sentiment analyzer in pure Python. It picks up positive and negative emotional words, handles negations like "not good" or "never felt this tired", and gives you a score from -1.0 to +1.0 along with common theme tags.
+
+Fourth, standard psychological self-check questionnaires. The app includes three recognized screening tools:
+- PSS-10 (Perceived Stress Scale) to check how overloaded you feel with college work.
+- PHQ-9 (Patient Health Questionnaire) for checking depression symptoms.
+- GAD-7 (Generalized Anxiety Disorder) to check general anxiety.
+All three calculate scores automatically, invert reverse-coded items, and show your clinical range from Minimal to Severe.
+
+Fifth, lifestyle correlation math. MindPulse takes your past logs and uses the Pearson correlation formula ($r$) to tell you if more sleep actually boosts your mood, or if study sessions over 7 hours start tanking your energy. It also keeps an eye on your rolling 7-day average to warn you if you're heading toward burnout.
+
+Finally, quick grounding exercises and data export. If you're having an anxious study session, the app walks you through 4x4 Box Breathing or the 5-4-3-2-1 sensory technique. If you want to view your numbers in Excel or submit them to a mentor, you can export your entire history into a CSV file with one command.
 
 ---
 
-## 3. Target Users
-1. College & University Students: Engineering and science students dealing with academic workloads, upcoming exams, project deadlines, and irregular sleep patterns who want a quick, distraction-free tool to monitor their well-being.
-2. Privacy-Conscious Individuals: Anyone who wants to keep an honest personal journal and habit log without trusting a third-party company or cloud service with their private thoughts.
-3. Mentors & Student Counselors: Academic counselors who can ask students to export their habit data over a few weeks to look at real study and sleep patterns during counseling sessions.
+## 3. Who This Is Built For
+- College and University Students: Specifically students tackling engineering coursework, project deadlines, and rough sleep schedules who need a zero-distraction terminal tool to keep themselves accountable.
+- People Who Value Data Privacy: Anyone who likes journaling but hates the idea of third-party apps mining their personal journal entries.
+- Student Mentors and Counselors: Faculty advisors or college wellness counselors who want students to bring in an exported CSV log to look at genuine sleep and habit patterns during one-on-one sessions.
 
 ---
 
-## 4. High-Level Features
-- Student Account Authentication: Register and login system with passwords secured using salted PBKDF2 hashing so passwords are never stored in plain text.
-- Daily Log Management: Fast interactive terminal inputs with checks to prevent invalid numbers (like negative hours or mood scores over 10).
-- Offline Sentiment Evaluation: Custom dictionary-based sentiment scoring that calculates mood tone from text without needing any paid AI APIs or external network calls.
-- Standard Psychometric Scoring: Automated score calculators for PSS-10, PHQ-9, and GAD-7 with clinical ranges (Minimal, Mild, Moderate, Severe) and practical suggestions.
-- Trend Sparklines & Correlation Statistics: Inline ASCII sparkline graphs to show recent mood trends at a glance, plus mathematical correlation calculations between habits and mood.
-- Burnout Risk Alert: A warning check that combines recent low sleep, long study hours, and low mood to warn the student before burnout hits.
-- Relaxation Guides: Quick calming exercises that can be completed right at the desk during study breaks.
-- CSV Exporting: One-click export to `data/<username>_export.csv` for easy viewing in spreadsheet software.
+## 4. Key Program Features
+- PBKDF2 salted password authentication so accounts are properly protected locally.
+- Quick daily habit entry with input validation guards.
+- Offline rule-based sentiment analysis that works without any internet or API keys.
+- Automatic scoring for PSS-10, PHQ-9, and GAD-7 clinical questionnaires.
+- ASCII trend sparklines and Pearson correlation statistics.
+- 7-day Burnout Risk warnings.
+- Interactive step-by-step breathing exercises right in the terminal.
+- One-click CSV export saved directly to the local data directory.
