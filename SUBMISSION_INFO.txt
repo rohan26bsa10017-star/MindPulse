@@ -1,0 +1,32 @@
+================================================================================
+VITYARTHI FLIPPED COURSE PROJECT SUBMISSION DETAILS
+Course: Problem Solving and Programming using Python
+================================================================================
+
+STUDENT INFORMATION:
+- Student Name      : Rohan
+- Registration No   : 26BSA10017
+- Institution       : Vellore Institute of Technology (VIT Bhopal)
+- Student Email     : rohan.26bsa10017@vitbhopal.ac.in
+
+PROJECT INFORMATION:
+- Project Title     : MindPulse - Student Wellness and Habit Tracker
+- Domain            : Health Informatics / Cognitive Wellness / Python Application
+- Implementation    : 100% Pure Python 3 (Standard Library: sqlite3, hashlib, math, unittest)
+- Architecture      : Clean Modular Architecture (11 core modules, 6 subpackages)
+- Automated Tests   : 24 / 24 Unit Tests Passing (100% Pass Rate)
+
+SUBMISSION LINKS & FILES:
+- Public GitHub URL : https://github.com/rohan26bsa10017-star/MindPulse
+- Project Report    : Project_Report.pdf (Full 15-Chapter Academic Report)
+- Project Statement : statement.md (Section 5.2 Requirement)
+- Documentation     : README.md (Section 5.1 Requirement)
+
+INSTRUCTIONS FOR EVALUATOR:
+1. To run the full application:
+   - Double-click 'run.bat' OR run: python main.py
+2. To run the automated unit tests:
+   - Double-click 'run_tests.bat' OR run: python -m unittest discover tests
+3. To view or test the standalone single-file version:
+   - Run: python mindpulse_standalone.py
+================================================================================
